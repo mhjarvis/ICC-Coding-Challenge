@@ -4,7 +4,15 @@ const port = 8000
 
 app.use(express.json())
 
-const messages = []
+const messages = [
+	{
+		success: true,
+		message: "This is Item 1",
+		name: "Test",
+		email: "testing@test.com",
+		id: 1773196349880,
+	},
+]
 
 app.post("/message", (req, res) => {
 	console.log("Request body:", req.body)
@@ -23,13 +31,23 @@ app.post("/message", (req, res) => {
 })
 
 app.get("/message/:token", (req, res) => {
-	console.log(req.params.token)
-	res.status(200).json({
-		success: true,
-		message: "Testing",
-		name: "Testing",
-		email: "testing@test.com",
-		token: req.params.token,
+	//console.log(req.params.token)
+
+	const returnMessage = messages.find(
+		(message) => message.id === req.params.token * 1,
+	)
+
+	if (returnMessage) {
+		return res.status(200).json({
+			success: true,
+			message: returnMessage.message,
+			name: returnMessage.name,
+			email: returnMessage.email,
+		})
+	}
+	res.status(404).json({
+		success: false,
+		message: "No message in DB",
 	})
 })
 

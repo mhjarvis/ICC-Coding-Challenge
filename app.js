@@ -4,6 +4,7 @@ const port = 8000
 
 app.use(express.json())
 
+// Placeholder until connected to Server
 const messages = [
 	{
 		success: true,
@@ -14,7 +15,8 @@ const messages = [
 	},
 ]
 
-app.post("/message", (req, res) => {
+// Handle POST request
+const createMessage = (req, res) => {
 	console.log("Request body:", req.body)
 
 	// testing
@@ -28,9 +30,10 @@ app.post("/message", (req, res) => {
 		message: req.body.message,
 		token: token,
 	})
-})
+}
 
-app.get("/message/:token", (req, res) => {
+// Handle GET request
+const getMessage = (req, res) => {
 	//console.log(req.params.token)
 
 	const returnMessage = messages.find(
@@ -49,8 +52,17 @@ app.get("/message/:token", (req, res) => {
 		success: false,
 		message: "No message in DB",
 	})
-})
+}
 
+// Create router for message routes and mount router at /api/message
+const messageRouter = express.Router()
+app.use("/api/message", messageRouter)
+
+// Create and Get message
+messageRouter.route("/").post(createMessage)
+messageRouter.route("/:token").get(getMessage)
+
+// Start server and listen for requests
 app.listen(port, () => {
 	console.log(`App listening on port ${port}`)
 })

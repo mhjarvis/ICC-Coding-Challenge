@@ -1,29 +1,32 @@
-// Placeholder until connected to Server
-const messages = [
-	{
-		success: true,
-		message: "This is Item 1",
-		name: "Test",
-		email: "testing@test.com",
-		id: 1773196349880,
-	},
-]
+const Message = require("./../models/messageModel")
+
+// Create Unique token (possibly using UUID?)
 
 // Handle POST request
-exports.createMessage = (req, res) => {
-	console.log("Request body:", req.body)
+// Using async/await for query to database
+exports.createMessage = async (req, res) => {
+	try {
+		// testing
+		const token = Date.now()
 
-	// testing
-	const token = Date.now()
-	const newMessage = Object.assign({ id: token }, req.body)
-	messages.push(newMessage)
-	console.log(messages)
+		// Create new Message in DB from user input
+		const newMessage = await Message.create(req.body)
 
-	res.status(201).json({
-		success: true,
-		message: req.body.message,
-		token: token,
-	})
+		// Needs udpating to include unique token
+		// Set token from function and not user inpu
+		// Add viewed input set to false
+
+		res.status(201).json({
+			success: true,
+			message: newMessage.message,
+			token: token,
+		})
+	} catch (err) {
+		res.status(400).json({
+			success: false,
+			message: err,
+		})
+	}
 }
 
 // Handle GET request

@@ -1,5 +1,7 @@
 const mongoose = require("mongoose")
 
+// Validators
+
 // Schema for creating new message document
 const messageSchema = new mongoose.Schema({
 	name: {
@@ -13,10 +15,12 @@ const messageSchema = new mongoose.Schema({
 	message: {
 		type: String,
 		required: [true, "Must include a message"],
+		maxlength: [250, "Message must be 250 characters or less."],
 	},
 	token: {
 		type: String,
 		required: [true, "Token not created"],
+		unique: true,
 	},
 	viewed: {
 		type: Boolean,

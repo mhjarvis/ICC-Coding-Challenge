@@ -7,7 +7,7 @@ const app = express()
 app.use(express.json())
 
 // Mount router at /api/message
-app.use("/api/message", messageRouter)
+app.use("/message", messageRouter)
 
 // Handle all other routes
 app.all("{*splat}", (req, res, next) => {

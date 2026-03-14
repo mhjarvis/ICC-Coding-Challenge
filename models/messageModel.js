@@ -34,6 +34,12 @@ const messageSchema = new mongoose.Schema({
 		type: Boolean,
 		default: false,
 	},
+	// Message will expire (delete) after 86,400 seconds (24 hours)
+	createdAt: {
+		type: Date,
+		expires: [86400],
+		default: Date.now(),
+	},
 })
 
 const Message = mongoose.model("Message", messageSchema)

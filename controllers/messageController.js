@@ -1,7 +1,16 @@
 const Message = require("./../models/messageModel")
 const uuid = require("uuid")
 
-// Create Unique token (possibly using UUID?)
+// Function to handle error output for user
+const errors = (err) => {
+	const errors = []
+
+	for (let key in err.errors) {
+		errors.push(err.errors[key].message)
+	}
+
+	return errors.join("; ")
+}
 
 // Handle POST request
 // Using async/await for query to database
@@ -19,9 +28,6 @@ exports.createMessage = async (req, res) => {
 			viewed: false,
 		})
 
-		// Needs udpating to include unique token
-		// Set token from function and not user input
-
 		if (newMessage) {
 			res.status(201).json({
 				success: true,
@@ -30,10 +36,12 @@ exports.createMessage = async (req, res) => {
 			})
 		}
 	} catch (err) {
+		// Handle error output for readability
+		const error = errors(err)
+
 		res.status(400).json({
 			success: false,
-			// Needs to be updated to return what the issue is
-			error: `Error: ${err.message}`,
+			error: `Error: ${error}`,
 			token: null,
 		})
 	}
@@ -49,7 +57,7 @@ exports.getMessage = async (req, res) => {
 		if (!message) {
 			return res.status(404).json({
 				success: false,
-				error: "This message does not exist",
+				error: "Error: This message does not exist",
 				name: null,
 				email: null,
 				message: null,
@@ -60,7 +68,7 @@ exports.getMessage = async (req, res) => {
 		if (message.viewed === true) {
 			return res.status(404).json({
 				success: false,
-				error: "This message has already been viewed.",
+				error: "Error: This message has already been viewed",
 				name: null,
 				email: null,
 				message: null,
@@ -82,7 +90,7 @@ exports.getMessage = async (req, res) => {
 	} catch (err) {
 		return res.status(404).json({
 			success: true,
-			error: "Unknown error occured, check your route.",
+			error: "Error: Unknown error occured, check your route",
 			err,
 			name: null,
 			email: null,

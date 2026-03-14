@@ -16,7 +16,11 @@ A REST API built with **Node.js, Express, MongoDB, and Mongoose** that allows us
 
 ## Features
 
-Content...
+- Create a new message using the /message endpoint.
+- Messages are stored in MongoDB (Atlas).
+- Messages are stored with a unique token that is returned to be used to generate a link.
+- Messages can only be viewed once.
+- Input validation for name, email, messaging fields with error handling.
 
 ---
 

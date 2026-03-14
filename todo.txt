@@ -1,9 +1,4 @@
 1. handlel unhandled routes
 2. data sanitation
-3. adding documents to mongo
-4. handling the view once requirement
-5. getting documenets from mongo
-6. error handling
 7. unit tests
 8. Finish readme
-9. 

@@ -18,15 +18,17 @@ exports.createMessage = async (req, res) => {
 			token: token,
 			viewed: false,
 		})
-		console.log(req.body)
 
 		// Needs udpating to include unique token
-		// Set token from function and not user inpu
-		res.status(201).json({
-			success: true,
-			error: null,
-			token: token,
-		})
+		// Set token from function and not user input
+
+		if (newMessage) {
+			res.status(201).json({
+				success: true,
+				error: null,
+				token: token,
+			})
+		}
 	} catch (err) {
 		res.status(400).json({
 			success: false,

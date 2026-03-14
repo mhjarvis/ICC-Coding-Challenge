@@ -22,17 +22,17 @@ exports.createMessage = async (req, res) => {
 
 		// Needs udpating to include unique token
 		// Set token from function and not user inpu
-		// Add viewed input set to false
-
 		res.status(201).json({
 			success: true,
-			message: newMessage.message,
+			error: null,
 			token: token,
 		})
 	} catch (err) {
 		res.status(400).json({
 			success: false,
-			message: err,
+			// Needs to be updated to return what the issue is
+			error: "Unable to create record.",
+			token: null,
 		})
 	}
 }
@@ -43,13 +43,14 @@ exports.getMessage = async (req, res) => {
 		// Search DB for document with matching token
 		const message = await Message.findOne({ token: req.params.token })
 
-		console.log(message)
-
 		// If message does not exist return 404 and error
 		if (!message) {
 			return res.status(404).json({
 				success: false,
-				message: "Error: message does not exist",
+				error: "This message does not exist",
+				name: null,
+				email: null,
+				message: null,
 			})
 		}
 
@@ -57,7 +58,10 @@ exports.getMessage = async (req, res) => {
 		if (message.viewed === true) {
 			return res.status(404).json({
 				success: false,
-				message: "Error: message already viewed",
+				error: "This message has already been viewed.",
+				name: null,
+				email: null,
+				message: null,
 			})
 		}
 
@@ -68,17 +72,26 @@ exports.getMessage = async (req, res) => {
 		// If message exists and has NOT been viewed, return message
 		return res.status(200).json({
 			success: true,
+			error: null,
+			name: message.name,
+			email: message.email,
 			message: message.message,
 		})
 	} catch (err) {
 		return res.status(404).json({
-			success: false,
-			message: err,
+			success: true,
+			error: "Unknown error occured, check your route.",
+			err,
+			name: null,
+			email: null,
+			message: null,
 		})
 	}
 }
 
-/* Path: /message
+/* Endpoint #1 - Creating the token
+
+Path: /message
 Method: POST
 
 Input: JSON, fields:
@@ -89,18 +102,20 @@ Note: all data should be validated reasonably, and the message should be limited
 
 Output: JSON, fields:
 - success [Boolean]
-- message [String]
-- token [String]
-Note: the message should be null unless an error has occurred */
+- error [String] // If error(s) present, this field should return a string with a suitable error message. If no error, it should return null. (Note: This field name was updated to ‘error’ instead of ‘message’ as listed on the original spec) 
+- token [String] // The generated token. If an error occurs, this field should be null. 
 
-/* Path: /message/:token
+
+Endpoint #2 - Retrieving the message
+
+Path: /message/:token
 Method: GET
 
 Output: JSON, fields:
 - success [Boolean]
-- message [String]
+- error [String] // If error(s) present, this field should return a string with a suitable error message. If no error, it should return null. (Note: This field name was updated to ‘error’ instead of ‘message’ as listed on the original spec)
 - name [String]
 - email [String]
-- message [String]
-Note: the message should be null unless an error has occurred
-Note: the name, email, and message fields should match the values provided in endpoint #1 */
+- message [String] 
+Note: If the request is successful, the name, email, and message fields should match the values provided in endpoint #1. If an error occurs, the name, email, and message fields should be returned but set to null.
+ */

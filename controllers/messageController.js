@@ -9,8 +9,16 @@ exports.createMessage = async (req, res) => {
 		// testing
 		const token = Date.now()
 
-		// Create new Message in DB from user input
-		const newMessage = await Message.create(req.body)
+		// Create new Message in DB from user input and prevent user input for
+		// viewed
+		const newMessage = await Message.create({
+			name: req.body.name,
+			email: req.body.email,
+			message: req.body.message,
+			token: token,
+			viewed: false,
+		})
+		console.log(req.body)
 
 		// Needs udpating to include unique token
 		// Set token from function and not user inpu
@@ -30,25 +38,25 @@ exports.createMessage = async (req, res) => {
 }
 
 // Handle GET request
-exports.getMessage = (req, res) => {
-	//console.log(req.params.token)
+exports.getMessage = async (req, res) => {
+	try {
+		// console.log(req.params.token)
+		const message = await Message.findOne({
+			token: req.params.token,
+		})
 
-	const returnMessage = messages.find(
-		(message) => message.id === req.params.token * 1,
-	)
+		console.log(message)
 
-	if (returnMessage) {
 		return res.status(200).json({
 			success: true,
-			message: returnMessage.message,
-			name: returnMessage.name,
-			email: returnMessage.email,
+			message: message.message,
+		})
+	} catch (err) {
+		res.status(404).json({
+			success: false,
+			message: err,
 		})
 	}
-	res.status(404).json({
-		success: false,
-		message: "No message in DB",
-	})
 }
 
 /* Path: /message

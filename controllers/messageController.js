@@ -40,19 +40,38 @@ exports.createMessage = async (req, res) => {
 // Handle GET request
 exports.getMessage = async (req, res) => {
 	try {
-		// console.log(req.params.token)
-		const message = await Message.findOne({
-			token: req.params.token,
-		})
+		// Search DB for document with matching token
+		const message = await Message.findOne({ token: req.params.token })
 
 		console.log(message)
 
+		// If message does not exist return 404 and error
+		if (!message) {
+			return res.status(404).json({
+				success: false,
+				message: "Error: message does not exist",
+			})
+		}
+
+		// If message has already been viewed, return 404 and error
+		if (message.viewed === true) {
+			return res.status(404).json({
+				success: false,
+				message: "Error: message already viewed",
+			})
+		}
+
+		// Update message and set viewed to true so it cannot be seen again
+		message.viewed = true
+		await message.save()
+
+		// If message exists and has NOT been viewed, return message
 		return res.status(200).json({
 			success: true,
 			message: message.message,
 		})
 	} catch (err) {
-		res.status(404).json({
+		return res.status(404).json({
 			success: false,
 			message: err,
 		})

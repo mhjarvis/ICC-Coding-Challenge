@@ -14,6 +14,10 @@ const messageSchema = new mongoose.Schema({
 		type: String,
 		required: [true, "Must include a message"],
 	},
+	token: {
+		type: String,
+		required: [true, "Token not created"],
+	},
 	viewed: {
 		type: Boolean,
 		default: false,

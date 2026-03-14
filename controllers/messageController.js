@@ -1,4 +1,5 @@
 const Message = require("./../models/messageModel")
+const uuid = require("uuid")
 
 // Create Unique token (possibly using UUID?)
 
@@ -6,11 +7,10 @@ const Message = require("./../models/messageModel")
 // Using async/await for query to database
 exports.createMessage = async (req, res) => {
 	try {
-		// testing
-		const token = Date.now()
+		// Use UUID to generate unique time-based token
+		const token = uuid.v7()
 
-		// Create new Message in DB from user input and prevent user input for
-		// viewed
+		// Create new Message in DB from input and prevent user input for viewed
 		const newMessage = await Message.create({
 			name: req.body.name,
 			email: req.body.email,

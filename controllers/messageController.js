@@ -12,12 +12,16 @@ const errors = (err) => {
 	return errors.join("; ")
 }
 
+const generateToken = () => {
+	return uuid.v7()
+}
+
 // Handle POST request
 // Using async/await for query to database
 exports.createMessage = async (req, res) => {
 	try {
 		// Use UUID to generate unique time-based token
-		const token = uuid.v7()
+		const token = generateToken()
 
 		// Create new Message in DB from input and prevent user input for viewed
 		const newMessage = await Message.create({

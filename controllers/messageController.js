@@ -31,7 +31,7 @@ exports.createMessage = async (req, res) => {
 		res.status(400).json({
 			success: false,
 			// Needs to be updated to return what the issue is
-			error: "Unable to create record.",
+			error: `Error: ${err.message}`,
 			token: null,
 		})
 	}

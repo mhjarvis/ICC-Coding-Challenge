@@ -19,7 +19,7 @@ const generateToken = () => {
 
 // Handle POST request
 // Using async/await for query to database
-exports.createMessage = async (req, res) => {
+const createMessage = async (req, res) => {
 	try {
 		// Use UUID to generate unique time-based token
 		const token = generateToken()
@@ -43,6 +43,7 @@ exports.createMessage = async (req, res) => {
 	} catch (err) {
 		// Handle error output for readability
 		const error = errors(err)
+		console.log(err)
 
 		return res.status(400).json({
 			success: false,
@@ -53,7 +54,7 @@ exports.createMessage = async (req, res) => {
 }
 
 // Handle GET request
-exports.getMessage = async (req, res) => {
+const getMessage = async (req, res) => {
 	try {
 		// Search DB for document with matching token
 		const message = await Message.findOne({ token: req.params.token })
@@ -103,7 +104,7 @@ exports.getMessage = async (req, res) => {
 	}
 }
 
-module.exports = { errors, generateToken }
+module.exports = { createMessage, getMessage, errors, generateToken }
 
 /* Endpoint #1 - Creating the token
 

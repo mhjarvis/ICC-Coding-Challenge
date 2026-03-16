@@ -92,7 +92,11 @@ DATABASE_PASSWORD=<password>
 npm install mongodb
 ```
 
-- Copy the 'Connection String' and set as your it as your DATABASE variable in your config.env file.
+- Add the <b>Connection String</b> to your config.env file:
+
+```bash
+DATABASE=<connection_string>
+```
 
 NOTE: This connection string may already have your <b>username</b> and <b>password</b> included, which is fine for testing.
 

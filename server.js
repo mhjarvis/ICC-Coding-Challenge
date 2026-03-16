@@ -9,10 +9,12 @@ dotenv.config({ path: "./config.env" })
 const port = process.env.PORT
 
 // Update Database connection string
-const DB = process.env.DATABASE.replace(
-	"<db_password>",
-	process.env.DATABASE_PASSWORD,
-)
+let DB = process.env.DATABASE
+
+// Test if password is already included in the connection string
+if (DB.includes("<db_password>")) {
+	DB = DB.replace("<db_password>", process.env.DATABASE_PASSWORD)
+}
 
 // Connect to Database
 mongoose.connect(DB).then((con) => {

@@ -33,7 +33,7 @@ exports.createMessage = async (req, res) => {
 		})
 
 		if (newMessage) {
-			res.status(201).json({
+			return res.status(201).json({
 				success: true,
 				error: null,
 				token: token,
@@ -43,9 +43,9 @@ exports.createMessage = async (req, res) => {
 		// Handle error output for readability
 		const error = errors(err)
 
-		res.status(400).json({
+		return res.status(400).json({
 			success: false,
-			error: `Error: ${error}`,
+			error: error,
 			token: null,
 		})
 	}
@@ -61,7 +61,7 @@ exports.getMessage = async (req, res) => {
 		if (!message) {
 			return res.status(404).json({
 				success: false,
-				error: "Error: This message does not exist",
+				error: "This message does not exist",
 				name: null,
 				email: null,
 				message: null,
@@ -72,7 +72,7 @@ exports.getMessage = async (req, res) => {
 		if (message.viewed === true) {
 			return res.status(404).json({
 				success: false,
-				error: "Error: This message has already been viewed",
+				error: "This message has already been viewed",
 				name: null,
 				email: null,
 				message: null,
@@ -94,8 +94,7 @@ exports.getMessage = async (req, res) => {
 	} catch (err) {
 		return res.status(404).json({
 			success: true,
-			error: "Error: Unknown error occured, check your route",
-			err,
+			error: "Unknown error occured",
 			name: null,
 			email: null,
 			message: null,

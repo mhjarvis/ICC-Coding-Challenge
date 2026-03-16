@@ -26,17 +26,89 @@ A REST API built with **Node.js, Express, MongoDB, and Mongoose** that allows us
 
 ## Installation
 
-Content...
+### 1. Clone the project from github.
+
+```bash
+git clone git@github.com:mhjarvis/ICC-Coding-Challenge.git
+```
+
+### 2. Install dependencies.
+
+```bash
+cd ICC-Coding-Challenge
+npm install
+```
+
+### 3. Create a config.env file in the root folder.
+
+```bash
+cp example.env config.env
+```
+
+#### You will need to replace the values in config.env that you created with your MongoDB credentials.
 
 ---
 
 ## Environment Setup
 
-Content...
+This project uses MongoDB Atlas. You will need to setup a account and create a cluster with the following steps.
+
+### 1. Create a free MongoDB Atlas Account
+
+[MongoDB Atlas](https://www.mongodb.com/cloud/atlas/register)
+
+### 2. Create a Cluster
+
+After you sign in:
+
+- Select <b>Create a Cluster</b> if not automatically prompted.
+- Select the <b>Free Tier</b>.
+- Select your <b>provider and region</b> (default is fine).
+- Click <b>Create Deployment</b>.
+
+### 3. Setup your Database
+
+When prompted:
+
+- Add your connection IP address (this should be completed automatically).
+- Create your database <b>username</b> and <b>password</b>.
+- Click <b>Create Database User</b>
+
+Add the <b>username</b> and <b>password</b> values to your config.env file:
+
+```bash
+USER=<username>
+DATABASE_PASSWORD=<password>
+```
+
+### 4. Get your Connection String
+
+- Click <b>Choose a connection method</b>.
+- Click on the <b>Drivers</b> option.
+- Ensure <b>Node.js</b> is selected as your <b>Driver</b>.
+- Install the driver if needed:
+
+```bash
+npm install mongodb
+```
+
+- Copy the 'Connection String' and set as your it as your DATABASE variable in your config.env file.
+
+NOTE: This connection string may already have your <b>username</b> and <b>password</b> included, which is fine for testing.
 
 ## Running the Application
 
-Content...
+Launch the application and connect to your server.
+
+```bash
+npm start
+```
+
+The API will run at:
+
+```bash
+http://localhost:8000
+```
 
 ---
 
@@ -63,6 +135,7 @@ Content...
 ## Project Structure
 
 ```
+
 project-name
 │
 ├── routes
@@ -72,6 +145,7 @@ project-name
 ├── package.json
 ├── .env.example
 └── README.md
+
 ```
 
 ---
@@ -86,3 +160,7 @@ project-name
 ## Author
 
 mhjarvis
+
+```
+
+```

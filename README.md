@@ -29,7 +29,7 @@ A REST API built with **Node.js, Express, MongoDB, and Mongoose** that allows us
 ### 1. Clone the project from github.
 
 ```bash
-git clone git@github.com:mhjarvis/ICC-Coding-Challenge.git
+git clone https://github.com/mhjarvis/ICC-Coding-Challenge.git
 ```
 
 ### 2. Install dependencies.
@@ -116,36 +116,80 @@ http://localhost:8000
 
 ### Create Message
 
-Content...
+POST
+
+```bash
+127.0.0.1:8000/message
+```
+
+Expected Request Body
+
+```json
+{
+	"name": "John",
+	"email": "john@test.com",
+	"message": "This is a message."
+}
+```
+
+Expected Response
+
+```json
+{
+	"success": true,
+	"error": null,
+	"token": "token-value"
+}
+```
 
 ---
 
-### Get message by ID
+### Get message by Token
 
-Content...
+GET
+
+```bash
+127.0.0.1:8000/message/:token
+```
+
+Expected Response (successful)
+
+```json
+{
+	"success": true,
+	"error": null,
+	"name": "John",
+	"email": "john@test.com",
+	"message": "This is a message."
+}
+```
 
 ---
 
 ## Testing
 
-Content...
+You can run tests with Jest via:
+
+```bash
+    npm test
+```
 
 ---
 
 ## Project Structure
 
 ```
-
 project-name
-│
+├── controllers
+├── models
 ├── routes
-├── config
+├── tests
 │
-├── server.js
+├── app.js
+├── config.env
 ├── package.json
-├── .env.example
-└── README.md
-
+├── README.md
+├── server.js
 ```
 
 ---
@@ -160,7 +204,3 @@ project-name
 ## Author
 
 mhjarvis
-
-```
-
-```

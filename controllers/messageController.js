@@ -43,7 +43,6 @@ const createMessage = async (req, res) => {
 	} catch (err) {
 		// Handle error output for readability
 		const error = errors(err)
-		console.log(err)
 
 		return res.status(400).json({
 			success: false,

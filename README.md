@@ -26,20 +26,20 @@ A REST API built with **Node.js, Express, MongoDB, and Mongoose** that allows us
 
 ## Installation
 
-### 1. Clone the project from github.
+#### 1. Clone the project from github.
 
 ```bash
 git clone https://github.com/mhjarvis/ICC-Coding-Challenge.git
 ```
 
-### 2. Install dependencies.
+#### 2. Install dependencies.
 
 ```bash
 cd ICC-Coding-Challenge
 npm install
 ```
 
-### 3. Create a config.env file in the root folder.
+#### 3. Create a config.env file in the root folder.
 
 ```bash
 cp example.env config.env
@@ -53,11 +53,11 @@ cp example.env config.env
 
 This project uses MongoDB Atlas. You will need to setup a account and create a cluster with the following steps.
 
-### 1. Create a free MongoDB Atlas Account
+#### 1. Create a free MongoDB Atlas Account
 
 [MongoDB Atlas](https://www.mongodb.com/cloud/atlas/register)
 
-### 2. Create a Cluster
+#### 2. Create a Cluster
 
 After you sign in:
 
@@ -66,7 +66,7 @@ After you sign in:
 - Select your <b>provider and region</b> (default is fine).
 - Click <b>Create Deployment</b>.
 
-### 3. Setup your Database
+#### 3. Setup your Database
 
 When prompted:
 
@@ -81,7 +81,7 @@ USER=<username>
 DATABASE_PASSWORD=<password>
 ```
 
-### 4. Get your Connection String
+#### 4. Get your Connection String
 
 - Click <b>Choose a connection method</b>.
 - Click on the <b>Drivers</b> option.
@@ -95,6 +95,8 @@ npm install mongodb
 - Copy the 'Connection String' and set as your it as your DATABASE variable in your config.env file.
 
 NOTE: This connection string may already have your <b>username</b> and <b>password</b> included, which is fine for testing.
+
+---
 
 ## Running the Application
 
@@ -116,13 +118,13 @@ http://localhost:8000
 
 ### Create Message
 
-POST
+#### POST
 
 ```bash
 127.0.0.1:8000/message
 ```
 
-Expected Request Body
+#### Expected Request Body
 
 ```json
 {
@@ -132,7 +134,7 @@ Expected Request Body
 }
 ```
 
-Expected Response
+#### Expected Response
 
 ```json
 {
@@ -146,13 +148,13 @@ Expected Response
 
 ### Get message by Token
 
-GET
+#### GET
 
 ```bash
 127.0.0.1:8000/message/:token
 ```
 
-Expected Response (successful)
+#### Expected Response (successful)
 
 ```json
 {

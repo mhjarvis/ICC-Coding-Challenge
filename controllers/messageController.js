@@ -103,6 +103,8 @@ exports.getMessage = async (req, res) => {
 	}
 }
 
+module.exports = { errors, generateToken }
+
 /* Endpoint #1 - Creating the token
 
 Path: /message

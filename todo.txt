@@ -1,4 +1,1 @@
-1. handlel unhandled routes
-2. data sanitation
-7. unit tests
 8. Finish readme

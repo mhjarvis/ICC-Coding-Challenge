@@ -1,5 +1,6 @@
 const Message = require("./../models/messageModel")
-const uuid = require("uuid")
+//const uuid = require("uuid")
+const uuid = require("crypto")
 
 // Function to handle error output for user
 const errors = (err) => {
@@ -13,7 +14,7 @@ const errors = (err) => {
 }
 
 const generateToken = () => {
-	return uuid.v7()
+	return uuid.randomUUID()
 }
 
 // Handle POST request

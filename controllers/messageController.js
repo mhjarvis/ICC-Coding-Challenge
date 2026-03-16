@@ -1,9 +1,8 @@
 const Message = require("./../models/messageModel")
-//const uuid = require("uuid")
 const uuid = require("crypto")
 
 // Function to handle error output for user
-const errors = (err) => {
+const formatError = (err) => {
 	const errors = []
 
 	for (let key in err.errors) {
@@ -42,7 +41,7 @@ const createMessage = async (req, res) => {
 		}
 	} catch (err) {
 		// Handle error output for readability
-		const error = errors(err)
+		const error = formatError(err)
 
 		return res.status(400).json({
 			success: false,
@@ -103,7 +102,7 @@ const getMessage = async (req, res) => {
 	}
 }
 
-module.exports = { createMessage, getMessage, errors, generateToken }
+module.exports = { createMessage, getMessage, formatError, generateToken }
 
 /* Endpoint #1 - Creating the token
 

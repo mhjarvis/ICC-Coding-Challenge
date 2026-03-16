@@ -1,4 +1,7 @@
-const { errors, generateToken } = require("../controllers/messageController")
+const {
+	formatError,
+	generateToken,
+} = require("../controllers/messageController")
 
 // Test to ensure token is generated, is a string and not null/undefined
 describe("Token Generation", () => {
@@ -11,7 +14,7 @@ describe("Token Generation", () => {
 	})
 })
 
-// Test errors to return correct error message
+// Test formatError to return correct error message
 const testError = {
 	errors: {
 		name: {
@@ -25,7 +28,7 @@ const testError = {
 
 describe("POST error is formated correctly", () => {
 	test("returns string that summarizes errors", () => {
-		expect(errors(testError)).toBe(
+		expect(formatError(testError)).toBe(
 			"You must include a name; You must include a message",
 		)
 	})

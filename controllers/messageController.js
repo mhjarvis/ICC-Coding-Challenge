@@ -93,7 +93,7 @@ const getMessage = async (req, res) => {
 		})
 	} catch (err) {
 		return res.status(404).json({
-			success: true,
+			success: false,
 			error: "Unknown error occured",
 			name: null,
 			email: null,

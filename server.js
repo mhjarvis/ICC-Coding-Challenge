@@ -18,7 +18,7 @@ if (DB.includes("<db_password>")) {
 
 // Connect to Database
 mongoose.connect(DB).then((con) => {
-	console.log("Connected to Database is successful")
+	console.log("Connected to Database is successful...")
 })
 
 // Start server and listen for requests

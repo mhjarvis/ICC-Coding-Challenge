@@ -12,8 +12,6 @@ A REST API built with **Node.js, Express, MongoDB, and Mongoose** that allows us
 - Mongoose
 - Jest (for testing)
 
----
-
 ## Features
 
 - Create a new message using the /message endpoint.
@@ -26,26 +24,26 @@ A REST API built with **Node.js, Express, MongoDB, and Mongoose** that allows us
 
 ## Installation
 
-#### 1. Clone the project from github.
+### 1. Clone the project from github.
 
 ```bash
 git clone https://github.com/mhjarvis/ICC-Coding-Challenge.git
 ```
 
-#### 2. Install dependencies.
+### 2. Install dependencies.
 
 ```bash
 cd ICC-Coding-Challenge
 npm install
 ```
 
-#### 3. Create a config.env file in the root folder.
+### 3. Create a config.env file in the root folder.
 
 ```bash
 cp example.env config.env
 ```
 
-#### You will need to replace the values in config.env that you created with your MongoDB credentials.
+You will need to replace the values in config.env that you created with your MongoDB credentials.
 
 ---
 
@@ -53,11 +51,11 @@ cp example.env config.env
 
 This project uses MongoDB Atlas. You will need to setup a account and create a cluster with the following steps.
 
-#### 1. Create a free MongoDB Atlas Account
+### 1. Create a free MongoDB Atlas Account
 
 [MongoDB Atlas](https://www.mongodb.com/cloud/atlas/register)
 
-#### 2. Create a Cluster
+### 2. Create a Cluster
 
 After you sign in:
 
@@ -66,7 +64,7 @@ After you sign in:
 - Select your <b>provider and region</b> (default is fine).
 - Click <b>Create Deployment</b>.
 
-#### 3. Setup your Database
+### 3. Setup your Database
 
 When prompted:
 
@@ -81,7 +79,7 @@ USER=<username>
 DATABASE_PASSWORD=<password>
 ```
 
-#### 4. Get your Connection String
+### 4. Get your Connection String
 
 - Click <b>Choose a connection method</b>.
 - Click on the <b>Drivers</b> option.
@@ -148,8 +146,6 @@ http://localhost:8000
 }
 ```
 
----
-
 ### Get message by Token
 
 #### GET
@@ -180,8 +176,6 @@ You can run tests with Jest via:
     npm test
 ```
 
----
-
 ## Project Structure
 
 ```
@@ -198,14 +192,10 @@ project-name
 ├── server.js
 ```
 
----
-
 ## Notes
 
 - MongoDB Atlas is used as the database.
 - An example `.env` file is provided and will need to be updated with your MongoDB Atlas connection string.
-
----
 
 ## Author
 

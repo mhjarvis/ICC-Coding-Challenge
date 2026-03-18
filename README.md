@@ -4,14 +4,6 @@ A REST API built with **Node.js, Express, MongoDB, and Mongoose** that allows us
 
 ---
 
-### Testing with Postman
-
-1. Send POST message to /message
-2. Copy the returned 'Token'
-3. Send GET request to /message/<token>
-
----
-
 ## Tech Stack
 
 - Node.js
@@ -72,6 +64,14 @@ Example:
 https://icc-coding-challenge.onrender.com/message/:token
 ```
 
+### Testing with Postman
+
+1. Send POST message to /message
+2. Copy the returned 'Token'
+3. Send GET request to /message/<token>
+
+---
+
 ## Installation
 
 ### 1. Clone the project from github.
@@ -93,7 +93,7 @@ npm install
 cp example.env config.env
 ```
 
-You will need to replace the values in config.env that you created with your MongoDB credentials.
+#### NOTE: You will need to replace the values in config.env that you created with your MongoDB Atlas credentials.
 
 ---
 
@@ -110,6 +110,9 @@ This project uses MongoDB Atlas. You will need to set up an account and create a
 After you sign in:
 
 - Select <b>Create a Cluster</b> if not automatically prompted.
+  - A default project should be automatically created for you. **IF this does not happen:**
+    - Select the <b>Project</b> dropdown at the top &rarr; <b>View all Projects</b> &rarr; <b>New Project</b>.
+  - **Create a Cluster**
 - Select the <b>Free Tier</b>.
 - Select your <b>provider and region</b> (default is fine).
 - Click <b>Create Deployment</b>.
@@ -122,10 +125,9 @@ When prompted:
 - Create your database <b>username</b> and <b>password</b>.
 - Click <b>Create Database User</b>
 
-Add the <b>username</b> and <b>password</b> values to your config.env file:
+Add the <b>password</b> value to your config.env file:
 
 ```bash
-USER=<username>
 DATABASE_PASSWORD=<password>
 ```
 
@@ -134,7 +136,7 @@ DATABASE_PASSWORD=<password>
 - Click <b>Choose a connection method</b>.
 - Click on the <b>Drivers</b> option.
 - Ensure <b>Node.js</b> is selected as your <b>Driver</b>.
-- Install the driver if needed:
+- Install the mongodb driver:
 
 ```bash
 npm install mongodb
@@ -146,7 +148,7 @@ npm install mongodb
 DATABASE=<connection_string>
 ```
 
-NOTE: This connection string may already have your <b>username</b> and <b>password</b> included, which is fine for testing.
+#### NOTE: This connection string may already have your <b>username</b> and <b>password</b> included, which is fine for testing.
 
 ---
 
@@ -234,6 +236,8 @@ You can run tests with Jest via:
 npm test
 ```
 
+---
+
 ## Project Structure
 
 ```
@@ -250,11 +254,15 @@ ICC-Coding-Challenge
 ├── server.js
 ```
 
+---
+
 ## Notes
 
 - MongoDB Atlas is used as the database.
 - An example `.env` file is provided and will need to be updated with your MongoDB Atlas connection string.
 - The live version may take up to 60 seconds to spin up after initial request.
+
+---
 
 ## Author
 

@@ -1,42 +1,14 @@
-# ICC - Messaging Feature
+# ICC - Coding Challenge
 
-A REST API built with **Node.js, Express, MongoDB, and Mongoose** that allows users to submit a message to a database, receive a link for the message in return, and allow one-time access to that message.
+A REST API built with **Node.js, Express, MongoDB, and Mongoose** that allows users to submit a message to a database, receive a token for the message in return, and allow one-time access to that message.
 
 ---
 
-## Live Version of the API
+### Testing with Postman
 
-A deployed version of the messaging API is available here:
-
-```bash
-https://icc-coding-challenge.onrender.com/message
-```
-
-NOTE: This API is hosted via Render's free tier and may take some time to spin up (if at first you get no response, wait about 60 seconds).
-
-### Endpoints
-
-Create a message:
-
-```bash
-POST /message
-```
-
-Example body:
-
-```json
-{
-	"name": "John Doe",
-	"email": "john@test.com",
-	"message": "This is a message"
-}
-```
-
-Retrieve a message:
-
-```bash
-GET /message/:token
-```
+1. Send POST message to /message
+2. Copy the returned 'Token'
+3. Send GET request to /message/<token>
 
 ---
 
@@ -54,9 +26,51 @@ GET /message/:token
 - Messages are stored in MongoDB (Atlas).
 - Messages are stored with a unique token that is returned to be used to generate a link.
 - Messages can only be viewed once.
-- Input validation for name, email, messaging fields with error handling.
+- Messages will expire after 24 hours.
+- Input validation for name, email, and messaging fields with error handling.
 
 ---
+
+## Live API
+
+A deployed version of the messaging API is available here:
+
+```bash
+Base URL:
+https://icc-coding-challenge.onrender.com
+```
+
+NOTE: This API is hosted via Render's free tier and may take some time to spin up (give it 60 seconds after first request to spin up).
+
+### Endpoints
+
+Create a message:
+
+```bash
+POST /message
+
+Example:
+https://icc-coding-challenge.onrender.com/message
+```
+
+Example body:
+
+```json
+{
+	"name": "John Doe",
+	"email": "john@test.com",
+	"message": "This is a message"
+}
+```
+
+Retrieve a message:
+
+```bash
+GET /message/:token
+
+Example:
+https://icc-coding-challenge.onrender.com/message/:token
+```
 
 ## Installation
 
@@ -85,7 +99,7 @@ You will need to replace the values in config.env that you created with your Mon
 
 ## Environment Setup
 
-This project uses MongoDB Atlas. You will need to setup a account and create a cluster with the following steps.
+This project uses MongoDB Atlas. You will need to set up an account and create a cluster with the following steps.
 
 ### 1. Create a free MongoDB Atlas Account
 
@@ -138,13 +152,13 @@ NOTE: This connection string may already have your <b>username</b> and <b>passwo
 
 ## Running the Application
 
-Launch the application and connect to your server.
+#### Launch the application and connect to your server.
 
 ```bash
 npm start
 ```
 
-The API will run at:
+#### The API will run at:
 
 ```bash
 http://localhost:8000
@@ -159,10 +173,13 @@ http://localhost:8000
 #### POST
 
 ```bash
-127.0.0.1:8000/message
+/message
+
+Example:
+http://localhost:8000/message
 ```
 
-#### Expected Request Body
+#### Expected Request Body (raw)
 
 ```json
 {
@@ -187,7 +204,10 @@ http://localhost:8000
 #### GET
 
 ```bash
-127.0.0.1:8000/message/:token
+/message/:token
+
+Example:
+http://localhost:8000/message/:token
 ```
 
 #### Expected Response (successful)
@@ -202,6 +222,8 @@ http://localhost:8000
 }
 ```
 
+#### NOTE: If localhost is causing issues, you may try: 127.0.0.1.
+
 ---
 
 ## Testing
@@ -209,13 +231,13 @@ http://localhost:8000
 You can run tests with Jest via:
 
 ```bash
-    npm test
+npm test
 ```
 
 ## Project Structure
 
 ```
-project-name
+ICC-Coding-Challenge
 ├── controllers
 ├── models
 ├── routes
@@ -232,6 +254,7 @@ project-name
 
 - MongoDB Atlas is used as the database.
 - An example `.env` file is provided and will need to be updated with your MongoDB Atlas connection string.
+- The live version may take up to 60 seconds to spin up after initial request.
 
 ## Author
 

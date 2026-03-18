@@ -4,6 +4,42 @@ A REST API built with **Node.js, Express, MongoDB, and Mongoose** that allows us
 
 ---
 
+## Live Version of the API
+
+A deployed version of the messaging API is available here:
+
+```bash
+https://icc-coding-challenge.onrender.com/message
+```
+
+NOTE: This API is hosted via Render's free tier and may take some time to spin up (if at first you get no response, wait about 60 seconds).
+
+### Endpoints
+
+Create a message:
+
+```bash
+POST /message
+```
+
+Example body:
+
+```json
+{
+	"name": "John Doe",
+	"email": "john@test.com",
+	"message": "This is a message"
+}
+```
+
+Retrieve a message:
+
+```bash
+GET /message/:token
+```
+
+---
+
 ## Tech Stack
 
 - Node.js

@@ -17,11 +17,15 @@ if (DB.includes("<db_password>")) {
 }
 
 // Connect to Database
-mongoose.connect(DB).then((con) => {
-	console.log("Connected to Database is successful...")
-})
-
-// Start server and listen for requests
-app.listen(port, () => {
-	console.log(`App listening on port ${port}`)
-})
+mongoose
+	.connect(DB)
+	.then(() => {
+		console.log("Connected to Database is successful...")
+		// Start server and listen for requests
+		app.listen(port, () => {
+			console.log(`App listening on port ${port}`)
+		})
+	})
+	.catch((err) => {
+		console.log("Database connection error", err.message)
+	})

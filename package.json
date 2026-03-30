@@ -16,7 +16,8 @@
 	"main": "app.js",
 	"scripts": {
 		"test": "jest",
-		"start": "node server.js"
+		"start": "node server.js",
+		"start-dev": "nodemon server.js"
 	},
 	"dependencies": {
 		"dotenv": "^17.3.1",
